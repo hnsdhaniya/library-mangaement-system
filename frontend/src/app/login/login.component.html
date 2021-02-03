@@ -1,0 +1,87 @@
+<div id="login">
+    <!-- <h3 class="text-center text-white pt-5">Login form</h3> -->
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6" >
+                <div id="login-box" class="col-md-12">
+                    <form id="login-form" class="form" [formGroup]="loginForm" action="" method="post">
+                        <h3 class="text-center text-info">Login</h3>
+                        <div class="form-group">
+                            <label for="username" class="text-info">Username:</label><br>
+                            <input type="text" name="username" formControlName="username" id="username" class="form-control">
+                            <div class="error-msg" *ngIf="Login && loginForm.controls['username'].errors?.required">
+                                Please enter username
+                            </div>
+                            <div class="error-msg"
+                                *ngIf="!Login && forgotpwd && loginForm.controls['username'].errors?.required">
+                                Please enter username
+                            </div>
+                            <div class="error-msg">
+                                {{resMessage1}}
+                            </div>
+                            <div class="error-msg" *ngIf="Login && loginForm.controls['username'].errors?.pattern">
+                                Only Alpha Numerics are allowed
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="text-info"  (keypress)="enterKey($event)">Password:</label><br>
+                            <input type="text" name="password" id="password" formControlName="password" minlength="8" class="form-control">
+                            <div class="error-msg" *ngIf="Login && loginForm.controls['password'].errors?.required">
+                                Please enter password
+                            </div>
+                            <div class="error-msg"
+                                *ngIf="Login && loginForm.controls['password'].errors?.minlength">
+                                Password should be minimum of 8 characters
+
+                            </div>
+                            <div class="error-msg">
+                                {{resMessage2}}
+                            </div>
+                            
+                        </div>
+                        <div class="form-group" >
+                            <!-- <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br> -->
+                            <input type="submit" name="submit" class="btn btn-info btn-md"  value="submit" (click)="submit()">
+                        </div>
+
+                        <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Login Successfully</strong> 
+                            <button (click)= "closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+
+                        <div id="register-link" class="text-right">
+                            <div class="text-info" (click)="signUp()">Register here</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade modalpopup-container" id="loginModel" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="heading">
+                    {{resMessages}}
+                </div>
+                <div class="result-logo">
+                    <img src="assets/images/{{imageName}}.png">
+                </div>
+                <!-- <div class="hint-msg">
+                    {{resMessages}}
+                </div> -->
+            </div>
+
+            <!-- data-dismiss="modal" -->
+            <div class="modal-footer">
+                <button (click)="navToLogin()" class="btn-filled col-6">
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

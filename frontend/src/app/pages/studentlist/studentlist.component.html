@@ -1,0 +1,211 @@
+<app-sidenav></app-sidenav>
+<div class="container home_container py-5">
+   
+  
+    <div class="row">
+        <button type="button" id="addnew" class="btn btn-primary new_icon" data-toggle="modal"  data-target="#myModal"><b>+</b>
+            Add New</button>
+    </div>
+ 
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12 mx-auto">
+      <div class="table-responsive">
+            <table id="datatable" style="width:100%" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Contactnumber</th>
+                        <th>State</th>
+                        <th>City</th>
+                        <th>Address</th>
+                        <th>PinCode</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of studentDetails;let i =index;">
+                        <td>{{i}}</td>
+                        <td>{{item.name | titlecase}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.contactnumber}}</td>
+                        <td>{{item.state}}</td>
+                        <td>{{item.city}}</td>
+                        <td>{{item.address}}</td>
+                        <td>{{item.pinCode}}</td>
+                        <td>
+                            <button class="btn btn-success btn-xs"  (click)="editData(item)"  title="Edit" style=" border-radius: 50%;">
+                                <!-- <i class="fa fa-pencil"></i> -->
+                                Edit
+                            </button>
+                            <button class="btn btn-danger btn-xs" (click)="deleteUser(item.id)" title="Delete" style=" border-radius: 50%;">
+                                <!-- <i class="fa fa-trash" aria-hidden="true"></i> -->
+                                Delete
+                            </button>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+  
+</div>
+
+<div class="modal" id="myModal" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Student</h5>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" [formGroup]="studentForm" >
+    
+                    <!-- <div class="form-group">
+                        <label for="username" class="cols-sm-2 control-label">Username</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" formControlName="username" name="username" id="username" placeholder="Enter your username" maxlength="30" />
+                               
+                            </div>
+                            <div class="error-msg"
+                            *ngIf="studentSubmit && studentForm.controls['username'].errors?.required">
+                            Please enter username
+                        </div>
+                       
+                       
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="name" class="cols-sm-2 control-label">Name</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" formControlName="name" name="name" id="author" placeholder="Enter your name" maxlength="50"/>
+                                
+                            </div>
+                            <div class="error-msg"
+                                *ngIf="studentSubmit && studentForm.controls['name'].errors?.required">
+                                Please enter author
+                            </div>
+                           
+                           
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">email address</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" formControlName="email" name="email" id="email" placeholder="Enter your email" maxlength="50"/>
+                                
+                            </div>
+                            <div class="error-msg"
+                                *ngIf="studentSubmit && studentForm.controls['email'].errors?.required">
+                                Please enter email
+                            </div>
+                           
+                           
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="rating" class="cols-sm-2 control-label">contact number</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" formControlName="contactnumber" name="contactnumber" id="contactnumber" placeholder="Enter your contactnumber" maxlength="50"/>
+                                
+                            </div>
+                            <div class="error-msg"
+                                *ngIf="studentSubmit && studentForm.controls['contactnumber'].errors?.required">
+                                Please enter rating
+                            </div>
+                           
+                           
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="cols-sm-2 control-label">address</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" formControlName="address" name="address" id="address" placeholder="Enter your Published Date" maxlength="50"/>
+                                
+                            </div>
+                            <div class="error-msg"
+                                *ngIf="studentSubmit && studentForm.controls['address'].errors?.required">
+                                Please enter address
+                            </div>
+                           
+                           
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="state" class="cols-sm-2 control-label">state</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" formControlName="state" name="state" id="state" placeholder="Enter your state" maxlength="50"/>
+                                
+                            </div>
+                            <div class="error-msg"
+                                *ngIf="studentSubmit && studentForm.controls['state'].errors?.required">
+                                Please enter state
+                            </div>
+                           
+                           
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city" class="cols-sm-2 control-label">city</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" formControlName="city" name="city" id="city" placeholder="Enter your city" maxlength="50"/>
+                                
+                            </div>
+                            <div class="error-msg"
+                                *ngIf="studentSubmit && studentForm.controls['city'].errors?.required">
+                                Please enter city
+                            </div>
+                           
+                           
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pinCode" class="cols-sm-2 control-label">pinCode</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" formControlName="pinCode" name="pinCode" id="pinCode" placeholder="Enter your pinCode" maxlength="50"/>
+                                
+                            </div>
+                            <div class="error-msg"
+                                *ngIf="studentSubmit && studentForm.controls['pinCode'].errors?.required">
+                                Please enter pinCode
+                            </div>
+                           
+                           
+                        </div>
+                    </div>
+                  
+                   
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary no_button" (click)="close()" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="submit"  class="btn btn-primary yes_button" (click)=submit()
+                   >Submit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

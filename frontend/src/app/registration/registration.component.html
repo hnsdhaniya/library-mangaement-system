@@ -1,0 +1,156 @@
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="col-md-8 main">
+            <div class="card">
+                <div class="card-header">Register</div>
+                <div class="card-body">
+
+                    <form class="form-horizontal" [formGroup]="registrationForm">
+
+                        <div class="form-group">
+                            <label for="name" class="cols-sm-2 control-label">Your Name</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user fa"
+                                            aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" formControlName="name" name="name" id="name"
+                                        placeholder="Enter your Name" />
+
+                                </div>
+                                <div class="error-msg"
+                                    *ngIf="register && registrationForm.controls['name'].errors?.required">
+                                    Please enter name
+                                </div>
+                                <div class="error-msg"
+                                    *ngIf="register && registrationForm.controls['name'].errors?.pattern">
+                                    Only Alpha Numerics are allowed
+                                </div>
+                                <div class="error-msg">
+                                    {{resMessage1}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="cols-sm-2 control-label">Your Email</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope fa"
+                                            aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" formControlName="email" name="email"
+                                        id="email" placeholder="Enter your Email"  />
+
+                                </div>
+                                <div class="error-msg"
+                                    *ngIf="register && registrationForm.controls['email'].errors?.required">
+                                    Please enter email id
+                                </div>
+                                <div class="error-msg">
+                                    {{resMessage2}}
+                                </div>
+                                <div class="error-msg"
+                                    *ngIf="register && registrationForm.controls['email'].errors?.pattern">
+                                    Invalid email
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="cols-sm-2 control-label">Mobile No</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope fa"
+                                            aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" formControlName="contactnumber" name="contactnumber"
+                                        id="email" placeholder="Enter your contactnumber" />
+
+                                </div>
+                                <div class="error-msg"
+                                    *ngIf="register && registrationForm.controls['contactnumber'].errors?.required">
+                                    Please enter mobile number
+                                </div>
+                               
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username" class="cols-sm-2 control-label">Username</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-users fa"
+                                            aria-hidden="true"></i></span>
+                                    <input type="text" class="form-control" formControlName="username" name="username"
+                                        id="username" placeholder="Enter your Username" />
+
+                                </div>
+                                <div class="error-msg"
+                                    *ngIf="register && registrationForm.controls['username'].errors?.required">
+                                    Please enter username
+                                </div>
+                                <div class="error-msg"
+                                    *ngIf="register && registrationForm.controls['username'].errors?.pattern">
+                                    Only Alpha Numerics are allowed
+                                </div>
+                                <div class="error-msg">
+                                    {{resMessage1}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="cols-sm-2 control-label">Password</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg"
+                                            aria-hidden="true"></i></span>
+                                    <input type="password" class="form-control" formControlName="password"
+                                        maxlength="25" minlength="8" name="password" id="password"
+                                        placeholder="Enter your Password" />
+
+                                </div>
+                                <div class="error-msg"
+                                    *ngIf="register && registrationForm.controls['password'].errors?.required">
+                                    Please enter password
+                                </div>
+                                <div class="error-msg"
+                                    *ngIf="register && registrationForm.controls['password'].errors?.minlength">
+                                    Password should have min of 8 characters
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+                            <div class="cols-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock fa-lg"
+                                            aria-hidden="true"></i></span>
+                                    <input type="password" class="form-control" formControlName="confirmpassword" name="confirmpassword"
+                                        id="confirmpassword" placeholder="confirm your Password"  />
+
+                                </div>
+                                <div class="error-msg"
+                                    *ngIf="register && registrationForm.controls['confirm'].errors?.required">
+                                    Please retype password
+                                </div>
+                                <div class="error-msg"
+                                    *ngIf="register && registrationForm.controls['confirmpassword'].errors?.minlength">
+                                    Password should have min of 8 characters
+                                </div>
+
+
+                                <div class="error-msg"
+                                    *ngIf="register && registrationForm.controls['confirmpassword'].errors?.confirmedValidator">
+                                    Password and Confirm Password must match.</div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <button type="button" class="btn btn-primary btn-lg btn-block login-button"
+                                (click)="registeration()">Register</button>
+                        </div>
+                        <!-- <div class="login-register">
+                            <div href="index.php" (click)="login()">Login</div>
+                        </div> -->
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

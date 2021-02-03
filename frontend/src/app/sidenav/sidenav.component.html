@@ -1,0 +1,58 @@
+<!-- navbar -->
+<nav class="navbar navbar-expand-md  navbar-light">
+    <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="myNavbar">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- sidebar navbar -->
+                <div class="col-lg-3 col-xl-2 col-md-4 sidebar fixed-top ">
+                
+                    <ul class="navbar-nav flex-column mt-4">
+                        <li *ngIf="IsAdmin==true"routerLink="/students" class="nav-item nav-link text-light p-3 mb-2 sidebar-link"
+                        routerLinkActive="active"
+                            style="cursor:pointer">
+                            Student List
+                        </li>
+                        <li *ngIf="IsAdmin==true|| IsAdmin==false" routerLink="/books" routerLinkActive="active" class="nav-item nav-link text-light p-3 mb-2 sidebar-link"
+                            style="cursor:pointer">
+                            Book List
+                        </li>
+                       
+                        <li class="nav-item nav-link text-light p-3 mb-2 sidebar-link"  routerLinkActive="active" data-toggle="modal" data-target="#deleteModal"
+                        style="cursor:pointer">
+                        Logout
+                    </li>   
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="modal logout_modal" id="deleteModal" data-backdrop="static">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+          <!-- <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"> Are you sure Do you want to logout?</h5>
+          </div> -->
+          <div class="modal-body">
+              <div class="alert alert-danger logout_head"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp; Do you want to logout?</div>
+</div>
+<div class="modal-footer ">
+              <button type="submit" class="btn  yes_button" (click)="logout('yes')"
+                  data-dismiss="modal"><i class="fa fa-check" aria-hidden="true"></i>
+                  Yes
+              </button>
+              <button type="button" class="btn no_button" (click)="logout('no')" data-dismiss="modal"><i class="fa fa-remove"></i>
+                  No
+              </button>
+       
+              </div>
+         
+      </div>
+  </div>
+</div>
+
+

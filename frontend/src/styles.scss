@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+.error-msg {
+    font-size: 0.68rem;
+    color: var(--light-red);
+    padding: 0.2rem 0.2rem;
+    font-family: var(--Medium);
+
+    &::first-letter {
+        text-transform: capitalize;
+    }
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+}
